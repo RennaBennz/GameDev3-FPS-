@@ -1,4 +1,5 @@
 using UnityEngine;
+using System.Collections;
 
 public class PlayerController : MonoBehaviour
 {
@@ -20,6 +21,7 @@ public class PlayerController : MonoBehaviour
 
 
     int jumpCounter;
+    int HPorig;
     float atkTimer;
 
     Vector3 moveDir;
@@ -34,7 +36,8 @@ public class PlayerController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+        movement();
+        sprint();
     }
 
     void movement()
@@ -49,6 +52,9 @@ public class PlayerController : MonoBehaviour
 
         moveDir = Input.GetAxis("Horizontal") * transform.right + Input.GetAxis("Vertical") * transform.forward;
         controller.Move(moveDir * speed * Time.deltaTime);
+
+        jump();
+        controller.Move(playerVel * speed * Time.deltaTime);
 
     }
 
