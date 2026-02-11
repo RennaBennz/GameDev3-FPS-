@@ -56,6 +56,11 @@ public class PlayerController : MonoBehaviour
         jump();
         controller.Move(playerVel * speed * Time.deltaTime);
 
+
+
+
+        playerVel.y -= gravity * Time.deltaTime;
+
     }
 
     void sprint()

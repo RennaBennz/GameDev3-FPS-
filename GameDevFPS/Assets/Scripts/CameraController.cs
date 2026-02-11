@@ -2,15 +2,37 @@ using UnityEngine;
 
 public class CameraController : MonoBehaviour
 {
+    [SerializeField] int sens;
+    [SerializeField] int lockVertMin, lockVertMax;
+    [SerializeField] bool invertY;
+
+    float camRotationX;
+
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        
+        Cursor.visible = false;
+        Cursor.lockState = CursorLockMode.Locked;
     }
 
     // Update is called once per frame
     void Update()
     {
-        
+        float mouseX = Input.GetAxisRaw("Mouse X") * sens * Time.deltaTime;
+        float mouseY = Input.GetAxisRaw("Mouse Y") * sens * Time.deltaTime;
+
+
+        if (invertY)
+        {
+            camRotationX += mouseY;
+        }
+        else
+        {
+            camRotationX -= mouseY;
+        }
+
+        camRotationX = Mathf.Clamp(camRotationX, lockVertMin, lockVertMax);
+        transform.localRotation = Quaternion.Euler(camRotationX, 0, 0);
+        transform.parent.Rotate(Vector3.up * mouseX);
     }
 }
