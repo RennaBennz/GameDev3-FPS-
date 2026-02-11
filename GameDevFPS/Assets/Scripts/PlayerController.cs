@@ -59,7 +59,7 @@ public class PlayerController : MonoBehaviour
 
 
 
-        playerVel.y -= gravity * Time.deltaTime;
+        playerVel.y -= (gravity / 10) * Time.deltaTime;
 
     }
 
@@ -78,7 +78,7 @@ public class PlayerController : MonoBehaviour
     {
         if (Input.GetButtonDown("Jump") && jumpCounter < maxJumps)
         {
-            playerVel.y = jumpHeight;
+            playerVel.y = (jumpHeight / 10);
             jumpCounter++;
         }
     }
