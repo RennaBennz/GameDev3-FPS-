@@ -23,8 +23,18 @@ public class Damage : MonoBehaviour
         if (other.isTrigger) return;
 
         IDamage dmg = other.GetComponent<IDamage>();
+        if (dmg == null)
+            dmg = other.GetComponentInParent<IDamage>();
+
         if (dmg != null)
+        {
             dmg.takeDamage(damageAmount);
+            Debug.Log("Hit damageable: " + other.name);
+        }
+        else
+        {
+            Debug.Log("Hit but no IDamage found on: " + other.name);
+        }
 
         Destroy(gameObject);
     }

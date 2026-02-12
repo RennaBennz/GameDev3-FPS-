@@ -42,7 +42,6 @@ public class Turret : MonoBehaviour
         if (turretHead == null) return;
 
         Vector3 dir = playerTarget.position - turretHead.position;
-        dir.y = 0f;
 
         if (dir.sqrMagnitude < 0.01f) return;
 
@@ -77,7 +76,6 @@ public class Turret : MonoBehaviour
         if (dmg != null)
         {
             dmg.SetDamage(damage);
-            dmg.SetSpeed(bulletSpeed);
         }
         Debug.Log("Fired at: " + shootPos.position);
     }
