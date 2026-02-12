@@ -10,6 +10,7 @@ public class gamemanager : MonoBehaviour
     [SerializeField] GameObject menuLose;
 
     [SerializeField] TMP_Text gameGoalCountText;
+    public Image playerHPBar;
     public GameObject Player;
     public PlayerController PlayerScript;
     public bool isPuased;
