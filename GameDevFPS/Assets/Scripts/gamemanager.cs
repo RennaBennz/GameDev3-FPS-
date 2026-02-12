@@ -4,10 +4,8 @@ using UnityEngine.UI;
 public class gamemanager : MonoBehaviour
 {
     public static gamemanager instance;
-
     [SerializeField] GameObject menuActive;
     [SerializeField] GameObject menuPause;
-
     public GameObject player;
     public PlayerController playerscript;
     public bool isPuased;
