@@ -33,7 +33,7 @@ public class Damage : MonoBehaviour
         }
         else
         {
-            Debug.Log("Hit but no IDamage found on: " + other.name);
+            Debug.Log("Hit but no IDamage found on: " + other.name + " | tag: " + other.tag);
         }
 
         Destroy(gameObject);

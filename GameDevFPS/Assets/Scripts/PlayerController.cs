@@ -1,7 +1,7 @@
 using UnityEngine;
 using System.Collections;
 
-public class PlayerController : MonoBehaviour
+public class PlayerController : MonoBehaviour, IDamage
 {
     [SerializeField] CharacterController controller;
 
@@ -87,7 +87,6 @@ public class PlayerController : MonoBehaviour
     public void takeDamage(int amount)
     {
         HP -= amount;
-        HP = Mathf.Clamp(HP, 0, maxHP);
 
         if (HP <= 0)
         {
