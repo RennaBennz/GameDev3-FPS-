@@ -83,6 +83,17 @@ public class PlayerController : MonoBehaviour
         }
     }
 
+    // This is what our turrets/enemies will call
+    public void takeDamage(int amount)
+    {
+        HP -= amount;
+        HP = Mathf.Clamp(HP, 0, maxHP);
 
+        if (HP <= 0)
+        {
+            // respawn or reload scene (team dicision)
+            Debug.Log("Player died!");
+        }
+    }
 
 }
