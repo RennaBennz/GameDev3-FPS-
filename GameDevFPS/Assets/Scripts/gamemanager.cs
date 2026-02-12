@@ -6,11 +6,15 @@ public class gamemanager : MonoBehaviour
     public static gamemanager instance;
     [SerializeField] GameObject menuActive;
     [SerializeField] GameObject menuPause;
-    public GameObject player;
-    public PlayerController playerscript;
+    [SerializeField] GameObject menuWin;
+
+    [SerializeField] TMP_Text gameGoalCountText;
+    public GameObject Player;
+    public PlayerController PlayerScript;
     public bool isPuased;
 
     float timeScaleOrig;
+    int gameGoalCount;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Awake()
@@ -18,8 +22,8 @@ public class gamemanager : MonoBehaviour
         instance = this;
         timeScaleOrig = Time.timeScale;
 
-        player = GameObject.FindWithTag("Player");
-        playerscript = player.GetComponent<PlayerController>();
+        Player = GameObject.FindWithTag("Player");
+        PlayerScript = Player.GetComponent<PlayerController>();
 
     }
 
@@ -60,6 +64,20 @@ public class gamemanager : MonoBehaviour
 
     }
 
-    
+    public void updateGameGoal(int amount)
+    {
+        gameGoalCount += amount;
+        gameGoalCountText.text = gameGoalCount.ToString("F0");
+
+        if (gameGoalCount <= 0)
+        {
+            // you win
+            statePause();
+            menuActive = menuWin;
+            menuActive.SetActive(true);
+
+        }
+    }
+
 }
 
