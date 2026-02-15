@@ -1,56 +1,75 @@
 using UnityEngine;
-
+using System.Collections;
 public class Damage : MonoBehaviour
 {
-    [SerializeField] int damageAmount;
-    [SerializeField] float bulletSpeed;
-    [SerializeField] float lifeTime;
-
+    enum damagetype { bullet, stationary, DOT }
+    [SerializeField] damagetype type;
     [SerializeField] Rigidbody rb;
 
+    [SerializeField] int damageAmount;
+    [SerializeField] float damageRate;
+    [SerializeField] int speed;
+    [SerializeField] int destroyTime;
+    [SerializeField] ParticleSystem hitEffect;
+
+    bool isDamaging;
+
+    // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        if (rb == null)
-            rb = GetComponent<Rigidbody>();
-        if (rb != null)
-            rb.linearVelocity = transform.forward * bulletSpeed;
-
-        Destroy(gameObject, lifeTime);
-    }
-
-    public void OnTriggerEnter(Collider other)
-    {
-        if (other.isTrigger) return;
-
-        IDamage dmg = other.GetComponent<IDamage>();
-        if (dmg == null)
-            dmg = other.GetComponentInParent<IDamage>();
-
-        if (dmg != null)
+        if (type == damagetype.bullet)
         {
-            dmg.takeDamage(damageAmount);
-            Debug.Log("Hit damageable: " + other.name);
-        }
-        else
-        {
-            Debug.Log("Hit but no IDamage found on: " + other.name + " | tag: " + other.tag);
+            rb.linearVelocity = transform.forward * speed;
+            Destroy(gameObject, destroyTime);
         }
 
-        Destroy(gameObject);
     }
 
-    // Lets each turret set its own stats
     public void SetDamage(int amount) => damageAmount = amount;
 
-    [System.Obsolete]
-    public void SetSpeed(float speed)
+    private void OnTriggerEnter(Collider other)
     {
-        bulletSpeed = speed;
+        if (other.isTrigger)
+        {
+            return;
+        }
 
-        if (rb == null)
-            rb = GetComponent<Rigidbody>();
+        IDamage dmg = other.GetComponent<IDamage>();
+        if (dmg != null && type != damagetype.DOT)
+        {
+            dmg.takeDamage(damageAmount);
+        }
 
-        if (rb != null)
-            rb.velocity = transform.forward * bulletSpeed;
+        if (type == damagetype.bullet)
+        {
+            if (hitEffect != null)
+            {
+                Instantiate(hitEffect, transform.position, Quaternion.identity);
+            }
+
+            Destroy(gameObject);
+        }
+    }
+
+    private void OnTriggerStay(Collider other)
+    {
+        if (other.isTrigger)
+        {
+            return;
+        }
+
+        IDamage dmg = other.GetComponent<IDamage>();
+        if (dmg != null && type == damagetype.DOT && !isDamaging)
+        {
+            StartCoroutine(damageOther(dmg));
+        }
+    }
+
+    IEnumerator damageOther(IDamage d)
+    {
+        isDamaging = true;
+        d.takeDamage(damageAmount);
+        yield return new WaitForSeconds(damageRate);
+        isDamaging = false;
     }
 }

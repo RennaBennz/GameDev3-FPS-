@@ -66,11 +66,7 @@ public class Turret : MonoBehaviour
 
     void Fire()
     {
-        GameObject bullet = Instantiate(
-            bulletPrefab,
-            shootPos.position,
-            shootPos.rotation
-        );
+        GameObject bullet = Instantiate(bulletPrefab, shootPos.position, shootPos.rotation);
 
         Damage dmg = bullet.GetComponent<Damage>();
         if (dmg != null)
