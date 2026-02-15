@@ -98,7 +98,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 850083331801385701}
-  m_Layer: 8
+  m_Layer: 0
   m_Name: Large Turret Root
   m_TagString: Untagged
   m_Icon: {fileID: 0}

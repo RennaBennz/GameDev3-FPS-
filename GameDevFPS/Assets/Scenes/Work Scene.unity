@@ -1408,10 +1408,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0cd44c1031e13a943bb63640046fad76, type: 3}
   m_Name: 
   m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.CanvasScaler
-  m_UiScaleMode: 0
+  m_UiScaleMode: 1
   m_ReferencePixelsPerUnit: 100
   m_ScaleFactor: 1
-  m_ReferenceResolution: {x: 800, y: 600}
+  m_ReferenceResolution: {x: 1920, y: 1080}
   m_ScreenMatchMode: 0
   m_MatchWidthOrHeight: 0
   m_PhysicalUnit: 3
@@ -2372,7 +2372,7 @@ MonoBehaviour:
   playerDamageFlash: {fileID: 877488083}
   Player: {fileID: 0}
   PlayerScript: {fileID: 0}
-  isPuased: 0
+  isPaused: 0
 --- !u!1 &470035531
 GameObject:
   m_ObjectHideFlags: 0
@@ -2857,16 +2857,18 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PlayerController
   controller: {fileID: 485675679}
-  maxHP: 1
-  HP: 1
+  ignoreLayer:
+    serializedVersion: 2
+    m_Bits: 0
+  HP: 100
   speed: 20
   sprintMod: 2
-  jumpHeight: 1
-  maxJumps: 1
+  jumpSpeed: 2
+  jumpMax: 1
   gravity: 10
-  atkDamage: 1
-  atkDistance: 1
-  atkSpeed: 1
+  shootDamage: 10
+  shootDist: 15
+  shootRate: 10
 --- !u!143 &485675679
 CharacterController:
   m_ObjectHideFlags: 0
@@ -11034,7 +11036,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 2338269760859599526, guid: 0bc16801e79f60d4dbc46614a6597226, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -1.44328
+      value: -15.55
       objectReference: {fileID: 0}
     - target: {fileID: 2338269760859599526, guid: 0bc16801e79f60d4dbc46614a6597226, type: 3}
       propertyPath: m_LocalPosition.y
@@ -11042,7 +11044,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2338269760859599526, guid: 0bc16801e79f60d4dbc46614a6597226, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 119.91001
+      value: 138.29
       objectReference: {fileID: 0}
     - target: {fileID: 2338269760859599526, guid: 0bc16801e79f60d4dbc46614a6597226, type: 3}
       propertyPath: m_LocalRotation.w

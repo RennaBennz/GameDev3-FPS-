@@ -60,7 +60,7 @@ public class Turret : MonoBehaviour
         if (fireTimer >= fireRate)
         {
             Fire();
-            fireTimer = 0f;
+            fireTimer = 1f;
         }
     }
 
