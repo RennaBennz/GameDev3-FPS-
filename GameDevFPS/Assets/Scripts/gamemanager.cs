@@ -89,7 +89,5 @@ public class gamemanager : MonoBehaviour
         menuActive.SetActive(true);
 
     }
-
-
 }
 
