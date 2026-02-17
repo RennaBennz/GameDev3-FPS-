@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 7101656386474273079}
   - component: {fileID: 5671601253942599649}
   - component: {fileID: 1388175046633811415}
-  m_Layer: 8
+  m_Layer: 9
   m_Name: Enemy Temp
   m_TagString: Player
   m_Icon: {fileID: 0}
@@ -173,7 +173,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8688353810653555945}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Shoot Pos
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -207,7 +207,7 @@ GameObject:
   - component: {fileID: 4219085723611031721}
   - component: {fileID: 3989065227510708360}
   - component: {fileID: 3196868214441033526}
-  m_Layer: 8
+  m_Layer: 9
   m_Name: Cube
   m_TagString: Untagged
   m_Icon: {fileID: 0}

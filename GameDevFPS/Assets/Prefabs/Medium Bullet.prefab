@@ -31,7 +31,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 10.0504, y: -2.52329, z: -56.72116}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 0.8, y: 0.8, z: 0.8}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
@@ -52,7 +52,7 @@ MonoBehaviour:
   rb: {fileID: 1701670189965408306}
   damageAmount: 25
   damageRate: 0.6
-  speed: 45
+  speed: 100
   destroyTime: 3
   hitEffect: {fileID: 0}
 --- !u!54 &1701670189965408306
