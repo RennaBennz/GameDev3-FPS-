@@ -14,7 +14,7 @@ public class gamemanager : MonoBehaviour
     public GameObject playerDamageFlash;
     public GameObject Player;
     public PlayerController PlayerScript;
-    public bool isPuased;
+    public bool isPaused;
 
     float timeScaleOrig;
     int gameGoalCount;
@@ -43,22 +43,22 @@ public class gamemanager : MonoBehaviour
             }
             else if (menuActive == menuPause)
             {
-                stateUnpuase();
+                stateUnpause();
             }
         }
     }
 
     public void statePause()
     {
-        isPuased = true;
+        isPaused = true;
         Time.timeScale = 0;
         Cursor.visible = true;
         Cursor.lockState = CursorLockMode.None;
     }
 
-    public void stateUnpuase()
+    public void stateUnpause()
     {
-        isPuased = false;
+        isPaused = false;
         Time.timeScale = timeScaleOrig;
         Cursor.visible = false;
         Cursor.lockState = CursorLockMode.Locked;
@@ -89,7 +89,5 @@ public class gamemanager : MonoBehaviour
         menuActive.SetActive(true);
 
     }
-
-
 }
 

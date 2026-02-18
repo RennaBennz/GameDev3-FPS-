@@ -3,22 +3,22 @@ using UnityEngine;
 public class Turret : MonoBehaviour
 {
     [Header("Detection")]
-    [SerializeField] float range = 10f;
+    [SerializeField] float range;
     [SerializeField] LayerMask playerLayer;
     [SerializeField] Transform rangeOrigin;
 
     [Header("Firing")]
     [SerializeField] Transform shootPos;
     [SerializeField] GameObject bulletPrefab;
-    [SerializeField] float fireRate = 0.5f;
+    [SerializeField] float fireRate;
 
     [Header("Caliber Stats")]
-    [SerializeField] int damage = 10;
-    [SerializeField] float bulletSpeed = 20f;
+    [SerializeField] int damage;
+    [SerializeField] float bulletSpeed;
 
     [Header("Aiming")]
     [SerializeField] Transform turretHead;
-    [SerializeField] float turnSpeed = 5f;
+    [SerializeField] float turnSpeed;
 
     float fireTimer;
     Transform playerTarget;
@@ -42,7 +42,6 @@ public class Turret : MonoBehaviour
         if (turretHead == null) return;
 
         Vector3 dir = playerTarget.position - turretHead.position;
-        dir.y = 0f;
 
         if (dir.sqrMagnitude < 0.01f) return;
 
@@ -61,24 +60,20 @@ public class Turret : MonoBehaviour
         if (fireTimer >= fireRate)
         {
             Fire();
-            fireTimer = 0f;
+            fireTimer = 1f;
         }
     }
 
     void Fire()
     {
-        GameObject bullet = Instantiate(
-            bulletPrefab,
-            shootPos.position,
-            shootPos.rotation
-        );
+        GameObject bullet = Instantiate(bulletPrefab, shootPos.position, shootPos.rotation);
 
         Damage dmg = bullet.GetComponent<Damage>();
         if (dmg != null)
         {
             dmg.SetDamage(damage);
-            dmg.SetSpeed(bulletSpeed);
         }
+        Debug.Log("Fired at: " + shootPos.position);
     }
 
     void OnDrawGizmosSelected()
@@ -86,4 +81,5 @@ public class Turret : MonoBehaviour
         Vector3 origin = rangeOrigin != null ? rangeOrigin.position : transform.position;
         Gizmos.DrawWireSphere(origin, range);
     }
+
 }
