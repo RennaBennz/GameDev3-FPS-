@@ -13,6 +13,7 @@ public class enemyAI : MonoBehaviour, IDamage
     [SerializeField] Renderer model;
     [SerializeField] NavMeshAgent agent;
     [SerializeField] GameObject bullet;
+    [SerializeField] int damage;
     [SerializeField] float shootRate;
     [SerializeField] Transform shootPos;
 
@@ -132,7 +133,14 @@ public class enemyAI : MonoBehaviour, IDamage
     void shoot()
     {
         shoottimer = 0;
-        Instantiate(bullet, shootPos.position, transform.rotation);
+
+        GameObject b = Instantiate(bullet, shootPos.position, shootPos.rotation);
+
+        Damage dmg = b.GetComponent<Damage>();
+        if (dmg != null)
+        {
+            dmg.SetDamage(damage);
+        }
     }
     public void takeDamage(int amount)
     {

@@ -52,13 +52,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::enemyAI
   HP: 3
-  faceTargetSpeed: 15
+  faceTargetSpeed: 20
   FOV: 360
   roamDist: 15
   roamPauseTime: 3
   model: {fileID: 1388175046633811415}
   agent: {fileID: 5831273322115288811}
   bullet: {fileID: 9151583332943362313, guid: af99a212b8a5c924ab27c30ca496614e, type: 3}
+  damage: 2
   shootRate: 0.5
   shootPos: {fileID: 8688353810653555945}
 --- !u!195 &5831273322115288811
@@ -98,12 +99,12 @@ CapsuleCollider:
     serializedVersion: 2
     m_Bits: 0
   m_LayerOverridePriority: 0
-  m_IsTrigger: 1
+  m_IsTrigger: 0
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 2
   m_Radius: 0.5000001
-  m_Height: 1.99
+  m_Height: 2
   m_Direction: 1
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!135 &2636430716922509439
@@ -208,13 +209,13 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6699225841772735047}
   serializedVersion: 2
-  m_LocalRotation: {x: -0, y: 0.008290595, z: -0, w: -0.99996567}
-  m_LocalPosition: {x: -0.007, y: 0.13337994, z: 0.557}
+  m_LocalRotation: {x: -0, y: -0.0010696349, z: -0, w: -0.9999994}
+  m_LocalPosition: {x: -0.0070037255, y: 0.13337994, z: 0.55699927}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 4666153797902662762}
-  m_LocalEulerAnglesHint: {x: 0, y: -360.95, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: -359.877, z: 0}
 --- !u!1 &9108128700111854961
 GameObject:
   m_ObjectHideFlags: 0
