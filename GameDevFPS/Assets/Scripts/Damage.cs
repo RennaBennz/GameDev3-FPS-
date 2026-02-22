@@ -34,7 +34,7 @@ public class Damage : MonoBehaviour
             return;
         }
 
-        IDamage dmg = other.GetComponentInParent<IDamage>();
+        IDamage dmg = other.GetComponent<IDamage>();
         if (dmg != null && type != damagetype.DOT)
         {
             dmg.takeDamage(damageAmount);
@@ -58,7 +58,7 @@ public class Damage : MonoBehaviour
             return;
         }
 
-        IDamage dmg = other.GetComponentInParent<IDamage>();
+        IDamage dmg = other.GetComponent<IDamage>();
         if (dmg != null && type == damagetype.DOT && !isDamaging)
         {
             StartCoroutine(damageOther(dmg));

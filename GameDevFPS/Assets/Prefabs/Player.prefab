@@ -205,7 +205,7 @@ MonoBehaviour:
   controller: {fileID: 8453128280123609720}
   ignoreLayer:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 8
   HP: 100
   speed: 20
   sprintMod: 2
@@ -213,7 +213,7 @@ MonoBehaviour:
   jumpMax: 1
   gravity: 10
   shootDamage: 50
-  shootDist: 15
+  shootDist: 25
   shootRate: 10
 --- !u!143 &8453128280123609720
 CharacterController:
