@@ -2,11 +2,6 @@ using UnityEngine;
 
 public class Turret : MonoBehaviour
 {
-    [Header("Detection")]
-    [SerializeField] float range;
-    [SerializeField] LayerMask playerLayer;
-    [SerializeField] Transform rangeOrigin;
-
     [Header("Firing")]
     [SerializeField] Transform shootPos;
     [SerializeField] GameObject bulletPrefab;
@@ -22,15 +17,11 @@ public class Turret : MonoBehaviour
 
     float fireTimer;
     Transform playerTarget;
+    bool playerInTrigger;
 
     void Update()
     {
-        Vector3 origin = rangeOrigin != null ? rangeOrigin.position : transform.position;
-
-        Collider[] hits = Physics.OverlapSphere(origin, range, playerLayer);
-        playerTarget = hits.Length > 0 ? hits[0].transform : null;
-
-        if (playerTarget == null)
+        if (!playerInTrigger)
             return;
 
         Aim();
@@ -53,6 +44,24 @@ public class Turret : MonoBehaviour
         );
     }
 
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.CompareTag("Player"))
+        {
+            playerTarget = other.transform;
+            playerInTrigger = true;
+        }
+    }
+
+    private void OnTriggerExit(Collider other)
+    {
+        if (other.CompareTag("Player"))
+        {
+            playerInTrigger = false;
+            playerTarget = null;
+        }
+    }
+
     void HandleFire()
     {
         fireTimer += Time.deltaTime;
@@ -60,7 +69,7 @@ public class Turret : MonoBehaviour
         if (fireTimer >= fireRate)
         {
             Fire();
-            fireTimer = 1f;
+            fireTimer = 0f;
         }
     }
 
@@ -75,11 +84,4 @@ public class Turret : MonoBehaviour
         }
         Debug.Log("Fired at: " + shootPos.position);
     }
-
-    void OnDrawGizmosSelected()
-    {
-        Vector3 origin = rangeOrigin != null ? rangeOrigin.position : transform.position;
-        Gizmos.DrawWireSphere(origin, range);
-    }
-
 }

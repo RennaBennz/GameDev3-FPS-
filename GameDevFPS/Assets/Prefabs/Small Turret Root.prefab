@@ -27,14 +27,14 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3060192262651562779}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.7069157, y: -0.0008648106, z: -0.029091114, w: 0.7066989}
-  m_LocalPosition: {x: 0, y: 0.03, z: 0.67}
+  m_LocalRotation: {x: 0.7074194, y: 0.01664665, z: -0.01156562, w: 0.7065034}
+  m_LocalPosition: {x: -0.0000057214515, y: 0.029999733, z: 0.670002}
   m_LocalScale: {x: 0.5, y: 0.5, z: 0.5}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 2548985083840257476}
   m_Father: {fileID: 4630967039793966524}
-  m_LocalEulerAnglesHint: {x: 92.427, y: 90.729, z: 88.441}
+  m_LocalEulerAnglesHint: {x: 90.41699, y: -78.63699, z: -80.923004}
 --- !u!33 &2527681769666494535
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -253,7 +253,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5830466678141800649}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.0024225083, y: -0.70020473, z: 0.0040766145, w: 0.71392643}
+  m_LocalRotation: {x: 0.002421571, y: -0.70020163, z: 0.0040740217, w: 0.7139294}
   m_LocalPosition: {x: -15.1, y: 1, z: 25.7}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -285,13 +285,13 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6590514732513150802}
   serializedVersion: 2
-  m_LocalRotation: {x: -0.7069156, y: 0.0008648099, z: 0.02909111, w: 0.7066989}
-  m_LocalPosition: {x: 0.051, y: 1.036, z: -0.022}
+  m_LocalRotation: {x: -0.7067176, y: -0.016750455, z: 0.011472552, w: 0.70720434}
+  m_LocalPosition: {x: 0.008, y: 1.129, z: -0.022}
   m_LocalScale: {x: 2, y: 2, z: 2}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 5394485171721562517}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: -87.713, y: -89.226, z: 88.798}
 --- !u!1 &7883517150874055408
 GameObject:
   m_ObjectHideFlags: 0
@@ -415,6 +415,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2540888765554653512}
   - component: {fileID: 2982074872686947762}
+  - component: {fileID: 3071032922548004647}
   m_Layer: 0
   m_Name: Small Turret
   m_TagString: Untagged
@@ -431,7 +432,7 @@ Transform:
   m_GameObject: {fileID: 7939703581036382659}
   serializedVersion: 2
   m_LocalRotation: {x: 0.002664567, y: -0.0026567876, z: 0.003684103, w: -0.9999862}
-  m_LocalPosition: {x: -16.323078, y: -7.9021754, z: -60.15065}
+  m_LocalPosition: {x: -16.333, y: -9.278, z: -60.143}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -451,15 +452,31 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4c64c72fcedb1244887c5fd75e67f131, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Turret
-  range: 15
-  playerLayer:
-    serializedVersion: 2
-    m_Bits: 256
-  rangeOrigin: {fileID: 1405185135028854633}
   shootPos: {fileID: 2548985083840257476}
-  bulletPrefab: {fileID: 154766235845674997, guid: 707aaaf3614eef7438876ceb55534534, type: 3}
-  fireRate: 0.2
+  bulletPrefab: {fileID: 154766235845674997, guid: 12b695ef699136e44963a2de12697954, type: 3}
+  fireRate: 0.5
   damage: 6
-  bulletSpeed: 30
+  bulletSpeed: 100
   turretHead: {fileID: 4630967039793966524}
   turnSpeed: 10
+--- !u!135 &3071032922548004647
+SphereCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7939703581036382659}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 1
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Radius: 35
+  m_Center: {x: 16.6, y: 8, z: 25}

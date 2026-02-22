@@ -11,12 +11,13 @@ GameObject:
   - component: {fileID: 4666153797902662762}
   - component: {fileID: 4902692908885399876}
   - component: {fileID: 5831273322115288811}
-  - component: {fileID: 7101656386474273079}
+  - component: {fileID: 975135455856333218}
+  - component: {fileID: 2636430716922509439}
   - component: {fileID: 5671601253942599649}
   - component: {fileID: 1388175046633811415}
-  m_Layer: 9
+  m_Layer: 7
   m_Name: Enemy Temp
-  m_TagString: Player
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -29,7 +30,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2745142043973760321}
   serializedVersion: 2
-  m_LocalRotation: {x: -0, y: 1, z: -0, w: 0.0000000745058}
+  m_LocalRotation: {x: 0, y: 1, z: 0, w: 0}
   m_LocalPosition: {x: 9.86, y: 1.97, z: 107.46}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -52,7 +53,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::enemyAI
   HP: 3
   faceTargetSpeed: 15
-  FOV: 90
+  FOV: 360
   roamDist: 15
   roamPauseTime: 3
   model: {fileID: 1388175046633811415}
@@ -80,10 +81,10 @@ NavMeshAgent:
   m_AutoRepath: 1
   m_Height: 2
   m_BaseOffset: 1
-  m_WalkableMask: 4294967295
+  m_WalkableMask: 5
   m_ObstacleAvoidanceType: 4
---- !u!143 &7101656386474273079
-CharacterController:
+--- !u!136 &975135455856333218
+CapsuleCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -97,15 +98,34 @@ CharacterController:
     serializedVersion: 2
     m_Bits: 0
   m_LayerOverridePriority: 0
+  m_IsTrigger: 1
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 0.5000001
+  m_Height: 1.99
+  m_Direction: 1
+  m_Center: {x: 0, y: 0, z: 0}
+--- !u!135 &2636430716922509439
+SphereCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2745142043973760321}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 1
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Height: 2
-  m_Radius: 0.5
-  m_SlopeLimit: 45
-  m_StepOffset: 0.3
-  m_SkinWidth: 0.08
-  m_MinMoveDistance: 0.001
+  m_Radius: 25
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!33 &5671601253942599649
 MeshFilter:
@@ -173,7 +193,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8688353810653555945}
-  m_Layer: 9
+  m_Layer: 7
   m_Name: Shoot Pos
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -189,7 +209,7 @@ Transform:
   m_GameObject: {fileID: 6699225841772735047}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: 0.008290595, z: -0, w: -0.99996567}
-  m_LocalPosition: {x: 0.3590003, y: 0.13337994, z: 0.5630035}
+  m_LocalPosition: {x: -0.007, y: 0.13337994, z: 0.557}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -207,8 +227,8 @@ GameObject:
   - component: {fileID: 4219085723611031721}
   - component: {fileID: 3989065227510708360}
   - component: {fileID: 3196868214441033526}
-  m_Layer: 9
-  m_Name: Cube
+  m_Layer: 7
+  m_Name: Face
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

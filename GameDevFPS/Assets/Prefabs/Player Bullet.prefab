@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 6246789079387268339}
   - component: {fileID: 8617575675579615456}
   - component: {fileID: 1840151299559073592}
-  m_Layer: 8
+  m_Layer: 6
   m_Name: Primer
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -237,7 +237,7 @@ GameObject:
   - component: {fileID: 1287090203968820610}
   - component: {fileID: 910136284890024441}
   - component: {fileID: 8247693914427372643}
-  m_Layer: 8
+  m_Layer: 6
   m_Name: Shell
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -354,8 +354,8 @@ GameObject:
   - component: {fileID: 3958976875000940987}
   - component: {fileID: 9015058366783170938}
   - component: {fileID: 2570100013700998791}
-  m_Layer: 8
-  m_Name: Enemy Bullet
+  m_Layer: 6
+  m_Name: Player Bullet
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -391,7 +391,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::Damage
   type: 0
   rb: {fileID: 3412279696895309995}
-  damageAmount: 10
+  damageAmount: 2
   damageRate: 0
   speed: 25
   destroyTime: 3
