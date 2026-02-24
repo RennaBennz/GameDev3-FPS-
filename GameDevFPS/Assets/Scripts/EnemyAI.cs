@@ -14,6 +14,8 @@ public class enemyAI : MonoBehaviour, IDamage
     [SerializeField] NavMeshAgent agent;
     [SerializeField] GameObject bullet;
     [SerializeField] float shootRate;
+
+    [SerializeField] int gunRotateSpeed;
     [SerializeField] Transform shootPos;
 
     Color colorOrig;
@@ -97,6 +99,7 @@ public class enemyAI : MonoBehaviour, IDamage
                 {
                     shoot();
                 }
+
                 agent.stoppingDistance = stoppingDistOrig;
                 return true;
             }
@@ -132,8 +135,10 @@ public class enemyAI : MonoBehaviour, IDamage
     void shoot()
     {
         shoottimer = 0;
-        Instantiate(bullet, shootPos.position, transform.rotation);
+
+        Instantiate(bullet, shootPos.position, shootPos.rotation);
     }
+
     public void takeDamage(int amount)
     {
         HP -= amount;

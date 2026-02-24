@@ -4,10 +4,11 @@ using System.Collections;
 using UnityEngine;
 using Debug = UnityEngine.Debug;
 
-public class PlayerController : MonoBehaviour, IDamage
+public class PlayerController : MonoBehaviour, IDamage, IPickup
 {
     [SerializeField] CharacterController controller;
     [SerializeField] LayerMask ignoreLayer;
+    [SerializeField] Transform medHoldPos;
 
     [SerializeField] int HP;
     [SerializeField] int speed;
@@ -24,6 +25,8 @@ public class PlayerController : MonoBehaviour, IDamage
     int HPOrig;
 
     float shootTimer;
+    medStats heldMed;
+    GameObject heldMedModel;
 
     Vector3 moveDir;
     Vector3 playerVel;
@@ -40,6 +43,11 @@ public class PlayerController : MonoBehaviour, IDamage
     {
         movement();
         sprint();
+        if (Input.GetButtonDown("Interact"))
+        {
+            Debug.Log("E pressed");
+            UseMedkit();
+        }
     }
 
     void movement()
@@ -63,7 +71,7 @@ public class PlayerController : MonoBehaviour, IDamage
         playerVel.y -= gravity * Time.deltaTime;
 
         if (Input.GetButton("Fire1") && shootTimer >= shootRate)
-            shoot();
+        shoot();
     }
 
     void jump()
@@ -90,14 +98,15 @@ public class PlayerController : MonoBehaviour, IDamage
 
     void shoot()
     {
-        shootTimer = 0;
+        shootTimer = 0f;
+
+        Vector3 origin = Camera.main.transform.position;
+        Vector3 dir = Camera.main.transform.forward;
 
         RaycastHit hit;
 
-        if (Physics.Raycast(Camera.main.transform.position, Camera.main.transform.forward, out hit, shootDist, ~ignoreLayer))
+        if (Physics.Raycast(origin, dir, out hit, shootDist))
         {
-            Debug.Log(hit.collider.name);
-
             IDamage dmg = hit.collider.GetComponent<IDamage>();
 
             if (dmg != null)
@@ -129,5 +138,41 @@ public class PlayerController : MonoBehaviour, IDamage
     private void updatePlayerUI()
     {
         gamemanager.instance.playerHPBar.fillAmount = (float)HP / HPOrig;
+    }
+
+    public void getMedStats(medStats med)
+    {
+        heldMed = med;
+
+        if (heldMedModel != null)
+            Destroy(heldMedModel);
+
+        if (heldMed != null && heldMed.heldModelPrefab != null && medHoldPos != null)
+        {
+            heldMedModel = Instantiate(heldMed.heldModelPrefab, medHoldPos.position, medHoldPos.rotation);
+            heldMedModel.transform.SetParent(medHoldPos);
+            heldMedModel.transform.localPosition = Vector3.zero;
+            heldMedModel.transform.localRotation = Quaternion.identity;
+        }
+    }
+
+    void UseMedkit()
+    {
+        if (heldMed == null)
+            return;
+
+        // Heal
+        HP += heldMed.healAmount;
+        if (HP > HPOrig)
+            HP = HPOrig;
+
+        updatePlayerUI();
+
+        // Remove from hand after use
+        if (heldMedModel != null)
+            Destroy(heldMedModel);
+
+        heldMedModel = null;
+        heldMed = null;
     }
 }
