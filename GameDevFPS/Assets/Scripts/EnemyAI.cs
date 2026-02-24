@@ -13,8 +13,9 @@ public class enemyAI : MonoBehaviour, IDamage
     [SerializeField] Renderer model;
     [SerializeField] NavMeshAgent agent;
     [SerializeField] GameObject bullet;
-    [SerializeField] int damage;
     [SerializeField] float shootRate;
+
+    [SerializeField] int gunRotateSpeed;
     [SerializeField] Transform shootPos;
 
     Color colorOrig;
@@ -98,6 +99,7 @@ public class enemyAI : MonoBehaviour, IDamage
                 {
                     shoot();
                 }
+
                 agent.stoppingDistance = stoppingDistOrig;
                 return true;
             }
@@ -134,14 +136,9 @@ public class enemyAI : MonoBehaviour, IDamage
     {
         shoottimer = 0;
 
-        GameObject b = Instantiate(bullet, shootPos.position, shootPos.rotation);
-
-        Damage dmg = b.GetComponent<Damage>();
-        if (dmg != null)
-        {
-            dmg.SetDamage(damage);
-        }
+        Instantiate(bullet, shootPos.position, shootPos.rotation);
     }
+
     public void takeDamage(int amount)
     {
         HP -= amount;
