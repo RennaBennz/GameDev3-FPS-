@@ -59,6 +59,14 @@ public class PlayerController : MonoBehaviour, IDamage, IPickup
         }
     }
 
+    public void spawnPlayer()
+    {
+        controller.transform.position = gamemanager.instance.playerSpawnPos.transform.position;
+        Physics.SyncTransforms();
+        HP = HPOrig;
+        updatePlayerUI();
+    }
+
     void movement()
     {
         shootTimer += Time.deltaTime;

@@ -4,23 +4,29 @@ using UnityEngine.SceneManagement;
 public class buttonfunctions : MonoBehaviour
 {
     // Start is called once before the first execution of Update after the MonoBehaviour is created
-    public void Resume()
+    public void resume()
     {
-        gamemanager.instance.stateUnpause();
+        gamemanager.instance.stateUnpuase();
     }
 
-    public void Restart()
+    public void resart()
     {
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);
-        gamemanager.instance.stateUnpause();
+        gamemanager.instance.stateUnpuase();
     }
 
-    public void Quit()
+    public void quit()
     {
-    #if UNITY_EDITOR
+#if UNITY_EDITOR
         UnityEditor.EditorApplication.isPlaying = false;
-    #else
-      Application.Quit();
-    #endif
+#else
+   Application.Quit();
+#endif
+    }
+
+    public void respawnPlayer()
+    {
+        gamemanager.instance.playerscript.spawnPlayer();
+        gamemanager.instance.stateUnpuase();
     }
 }

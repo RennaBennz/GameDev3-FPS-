@@ -4,19 +4,23 @@ using UnityEngine.UI;
 public class gamemanager : MonoBehaviour
 {
     public static gamemanager instance;
+
     [SerializeField] GameObject menuActive;
     [SerializeField] GameObject menuPause;
     [SerializeField] GameObject menuWin;
     [SerializeField] GameObject menuLose;
-
     [SerializeField] TMP_Text gameGoalCountText;
     public Image playerHPBar;
     public GameObject playerDamageFlash;
-    public GameObject Player;
-    public PlayerController PlayerScript;
-    public bool isPaused;
+
+    public GameObject player;
+    public PlayerController playerscript;
+    public bool isPuased;
+    public GameObject playerSpawnPos;
+    public GameObject checkPointPopup;
 
     float timeScaleOrig;
+
     int gameGoalCount;
 
     bool gameOver;
@@ -25,12 +29,13 @@ public class gamemanager : MonoBehaviour
     void Awake()
     {
         instance = this;
-        gameGoalCount = 0;
         timeScaleOrig = Time.timeScale;
 
-        Player = GameObject.FindWithTag("Player");
-        PlayerScript = Player.GetComponent<PlayerController>();
+        player = GameObject.FindWithTag("Player");
+        playerscript = player.GetComponent<PlayerController>();
 
+
+        playerSpawnPos = GameObject.FindWithTag("Play Spawn Pos");
     }
 
     // Update is called once per frame
@@ -46,22 +51,22 @@ public class gamemanager : MonoBehaviour
             }
             else if (menuActive == menuPause)
             {
-                stateUnpause();
+                stateUnpuase();
             }
         }
     }
 
     public void statePause()
     {
-        isPaused = true;
+        isPuased = true;
         Time.timeScale = 0;
         Cursor.visible = true;
         Cursor.lockState = CursorLockMode.None;
     }
 
-    public void stateUnpause()
+    public void stateUnpuase()
     {
-        isPaused = false;
+        isPuased = false;
         Time.timeScale = timeScaleOrig;
         Cursor.visible = false;
         Cursor.lockState = CursorLockMode.Locked;
@@ -89,6 +94,7 @@ public class gamemanager : MonoBehaviour
 
     }
 
+
     public void YouWin()
     {
         // Prevent this from running multiple times
@@ -107,5 +113,5 @@ public class gamemanager : MonoBehaviour
         menuActive = menuWin;
         menuActive.SetActive(true);
     }
-}
 
+}
