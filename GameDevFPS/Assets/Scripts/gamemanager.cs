@@ -23,6 +23,8 @@ public class gamemanager : MonoBehaviour
 
     int gameGoalCount;
 
+    bool gameOver;
+
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Awake()
     {
@@ -76,16 +78,12 @@ public class gamemanager : MonoBehaviour
     public void updateGameGoal(int amount)
     {
         gameGoalCount += amount;
+
+        if (gameGoalCount < 0)
+            gameGoalCount = 0;
+
         gameGoalCountText.text = gameGoalCount.ToString("F0");
 
-        if (gameGoalCount <= 0)
-        {
-            // you win
-            statePause();
-            menuActive = menuWin;
-            menuActive.SetActive(true);
-
-        }
     }
 
     public void youLose()
@@ -95,4 +93,25 @@ public class gamemanager : MonoBehaviour
         menuActive.SetActive(true);
 
     }
+
+
+    public void YouWin()
+    {
+        // Prevent this from running multiple times
+        if (gameOver)
+            return;
+
+        gameOver = true;
+
+        Debug.Log("YOU WIN!");
+
+        // Stop the game
+        Time.timeScale = 0f;
+
+        // you win
+        statePause();
+        menuActive = menuWin;
+        menuActive.SetActive(true);
+    }
+
 }
