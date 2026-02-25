@@ -80,7 +80,7 @@ public class enemyAI : MonoBehaviour, IDamage
 
     bool canSeePlayer()
     {
-        playerDir = gamemanager.instance.Player.transform.position - transform.position;
+        playerDir = gamemanager.instance.player.transform.position - transform.position;
         angleToPlayer = Vector3.Angle(playerDir, transform.forward);
 
         Debug.DrawRay(transform.position, playerDir);
@@ -90,7 +90,7 @@ public class enemyAI : MonoBehaviour, IDamage
         {
             if (angleToPlayer <= FOV && hit.collider.CompareTag("Player"))
             {
-                agent.SetDestination(gamemanager.instance.Player.transform.position);
+                agent.SetDestination(gamemanager.instance.player.transform.position);
 
                 if (agent.remainingDistance < agent.stoppingDistance)
                     faceTarget();
@@ -142,7 +142,7 @@ public class enemyAI : MonoBehaviour, IDamage
     public void takeDamage(int amount)
     {
         HP -= amount;
-        agent.SetDestination(gamemanager.instance.Player.transform.position);
+        agent.SetDestination(gamemanager.instance.player.transform.position);
 
         if (HP <= 0)
         {
