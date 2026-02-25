@@ -4,30 +4,36 @@ using UnityEngine.UI;
 public class gamemanager : MonoBehaviour
 {
     public static gamemanager instance;
+
     [SerializeField] GameObject menuActive;
     [SerializeField] GameObject menuPause;
     [SerializeField] GameObject menuWin;
     [SerializeField] GameObject menuLose;
-
     [SerializeField] TMP_Text gameGoalCountText;
     public Image playerHPBar;
     public GameObject playerDamageFlash;
 
-    float timeScaleOrig;
-    int gameGoalCount;
+    public GameObject player;
+    public PlayerController playerscript;
+    public bool isPuased;
+    public GameObject playerSpawnPos;
+    public GameObject checkPointPopup;
 
-    bool gameOver;
+    float timeScaleOrig;
+
+    int gameGoalCount;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Awake()
     {
         instance = this;
-        gameGoalCount = 0;
         timeScaleOrig = Time.timeScale;
 
-        Player = GameObject.FindWithTag("Player");
-        PlayerScript = Player.GetComponent<PlayerController>();
+        player = GameObject.FindWithTag("Player");
+        playerscript = player.GetComponent<PlayerController>();
 
+
+        playerSpawnPos = GameObject.FindWithTag("Play Spawn Pos");
     }
 
     // Update is called once per frame
@@ -43,22 +49,22 @@ public class gamemanager : MonoBehaviour
             }
             else if (menuActive == menuPause)
             {
-                stateUnpause();
+                stateUnpuase();
             }
         }
     }
 
     public void statePause()
     {
-        isPaused = true;
+        isPuased = true;
         Time.timeScale = 0;
         Cursor.visible = true;
         Cursor.lockState = CursorLockMode.None;
     }
 
-    public void stateUnpause()
+    public void stateUnpuase()
     {
-        isPaused = false;
+        isPuased = false;
         Time.timeScale = timeScaleOrig;
         Cursor.visible = false;
         Cursor.lockState = CursorLockMode.Locked;
@@ -72,6 +78,14 @@ public class gamemanager : MonoBehaviour
         gameGoalCount += amount;
         gameGoalCountText.text = gameGoalCount.ToString("F0");
 
+        if (gameGoalCount <= 0)
+        {
+            // you win
+            statePause();
+            menuActive = menuWin;
+            menuActive.SetActive(true);
+
+        }
     }
 
     public void youLose()
@@ -81,12 +95,4 @@ public class gamemanager : MonoBehaviour
         menuActive.SetActive(true);
 
     }
-
-    public void YouWin()
-    {
-        statePause();
-        menuActive = menuWin;
-        menuActive.SetActive(true);
-    }
 }
-
