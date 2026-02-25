@@ -49,9 +49,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::Turret
   shootPos: {fileID: 3588755081908010499}
   bulletPrefab: {fileID: 154766235845674997, guid: 2ac4f0ba1d620954bb4febd8e39c0c0e, type: 3}
-  fireRate: 1
+  fireRate: 1.5
   damage: 15
-  bulletSpeed: 100
+  bulletSpeed: 50
   turretHead: {fileID: 2213179600453935355}
   turnSpeed: 10
 --- !u!135 &3803875613098592631
@@ -327,7 +327,7 @@ Transform:
   m_GameObject: {fileID: 3929671473646083987}
   serializedVersion: 2
   m_LocalRotation: {x: -0.7050787, y: 0.0007614883, z: 0.031889286, w: 0.7084113}
-  m_LocalPosition: {x: -0.038, y: 1.438, z: 0.046}
+  m_LocalPosition: {x: -0.01, y: 1.474, z: 0.04}
   m_LocalScale: {x: 1.190168, y: 1.1904685, z: 0.9525825}
   m_ConstrainProportionsScale: 0
   m_Children: []

@@ -1,6 +1,7 @@
 using System;
 using System.Diagnostics;
 using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 using Debug = UnityEngine.Debug;
 
@@ -25,27 +26,35 @@ public class PlayerController : MonoBehaviour, IDamage, IPickup
     int HPOrig;
 
     float shootTimer;
+
+    // --- Medkit inventory ---
+    List<medStats> medList = new List<medStats>();
+    int medListPos;
+
     medStats heldMed;
     GameObject heldMedModel;
 
     Vector3 moveDir;
     Vector3 playerVel;
 
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
         HPOrig = HP;
         updatePlayerUI();
     }
 
-    // Update is called once per frame
     void Update()
     {
         movement();
         sprint();
+
+        // Scroll through held medkits (if you have more than one)
+        selectMedkit();
+
+        // Use currently selected medkit
         if (Input.GetButtonDown("Interact"))
         {
-            Debug.Log("E pressed");
+            Debug.Log("Interact pressed");
             UseMedkit();
         }
     }
@@ -71,7 +80,7 @@ public class PlayerController : MonoBehaviour, IDamage, IPickup
         playerVel.y -= gravity * Time.deltaTime;
 
         if (Input.GetButton("Fire1") && shootTimer >= shootRate)
-        shoot();
+            shoot();
     }
 
     void jump()
@@ -80,7 +89,6 @@ public class PlayerController : MonoBehaviour, IDamage, IPickup
         {
             playerVel.y = jumpSpeed;
             jumpCount++;
-
         }
     }
 
@@ -142,11 +150,36 @@ public class PlayerController : MonoBehaviour, IDamage, IPickup
 
     public void getMedStats(medStats med)
     {
-        heldMed = med;
+        // Add the medkit to our inventory
+        medList.Add(med);
 
+        // Auto-select the newest medkit picked up
+        medListPos = medList.Count - 1;
+
+        changeMedkit();
+    }
+
+    void changeMedkit()
+    {
+        // If we have no medkits, clear held medkit + model
+        if (medList.Count == 0)
+        {
+            heldMed = null;
+
+            if (heldMedModel != null)
+                Destroy(heldMedModel);
+
+            heldMedModel = null;
+            return;
+        }
+
+        heldMed = medList[medListPos];
+
+        // Remove old held model
         if (heldMedModel != null)
             Destroy(heldMedModel);
 
+        // Spawn the new held model
         if (heldMed != null && heldMed.heldModelPrefab != null && medHoldPos != null)
         {
             heldMedModel = Instantiate(heldMed.heldModelPrefab, medHoldPos.position, medHoldPos.rotation);
@@ -156,9 +189,31 @@ public class PlayerController : MonoBehaviour, IDamage, IPickup
         }
     }
 
+    void selectMedkit()
+    {
+        // Need at least 2 to scroll
+        if (medList.Count <= 1)
+            return;
+
+        if (Input.GetAxis("Mouse ScrollWheel") > 0 && medListPos < medList.Count - 1)
+        {
+            medListPos++;
+            changeMedkit();
+        }
+        else if (Input.GetAxis("Mouse ScrollWheel") < 0 && medListPos > 0)
+        {
+            medListPos--;
+            changeMedkit();
+        }
+    }
+
     void UseMedkit()
     {
-        if (heldMed == null)
+        if (medList.Count == 0 || heldMed == null)
+            return;
+
+        // Don't waste a medkit if already full HP
+        if (HP >= HPOrig)
             return;
 
         // Heal
@@ -168,11 +223,14 @@ public class PlayerController : MonoBehaviour, IDamage, IPickup
 
         updatePlayerUI();
 
-        // Remove from hand after use
-        if (heldMedModel != null)
-            Destroy(heldMedModel);
+        // Remove used medkit from inventory
+        medList.RemoveAt(medListPos);
 
-        heldMedModel = null;
-        heldMed = null;
+        // Clamp index
+        if (medListPos >= medList.Count)
+            medListPos = medList.Count - 1;
+
+        // Refresh held model (or clear if none left)
+        changeMedkit();
     }
 }
