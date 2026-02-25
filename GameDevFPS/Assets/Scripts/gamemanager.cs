@@ -12,9 +12,6 @@ public class gamemanager : MonoBehaviour
     [SerializeField] TMP_Text gameGoalCountText;
     public Image playerHPBar;
     public GameObject playerDamageFlash;
-    public GameObject Player;
-    public PlayerController PlayerScript;
-    public bool isPaused;
 
     float timeScaleOrig;
     int gameGoalCount;
@@ -73,10 +70,6 @@ public class gamemanager : MonoBehaviour
     public void updateGameGoal(int amount)
     {
         gameGoalCount += amount;
-
-        if (gameGoalCount < 0)
-            gameGoalCount = 0;
-
         gameGoalCountText.text = gameGoalCount.ToString("F0");
 
     }
@@ -91,18 +84,6 @@ public class gamemanager : MonoBehaviour
 
     public void YouWin()
     {
-        // Prevent this from running multiple times
-        if (gameOver)
-            return;
-
-        gameOver = true;
-
-        Debug.Log("YOU WIN!");
-
-        // Stop the game
-        Time.timeScale = 0f;
-
-        // you win
         statePause();
         menuActive = menuWin;
         menuActive.SetActive(true);
