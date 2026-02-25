@@ -47,12 +47,17 @@ public class Spawner : MonoBehaviour
         spawnTimer = 0;
         spawnCount++;
 
-        Vector3 ranPos = Random.insideUnitSphere * spawnDist;
-        ranPos += transform.position;
+        Vector2 circle = Random.insideUnitCircle * spawnDist;
+        Vector3 ranPos = new Vector3(circle.x, 0f, circle.y) + transform.position;
 
         NavMeshHit hit;
-        NavMesh.SamplePosition(ranPos, out hit, spawnDist, 1);
+        if (!NavMesh.SamplePosition(ranPos, out hit, spawnDist, NavMesh.AllAreas))
+        {
+            Debug.LogWarning("Spawn cancelled: No NavMesh near spawner. Is there NavMesh near this spawner?");
+            spawnCount--;
+            return;
+        }
 
-        Instantiate(objectToSpawn, hit.position, Quaternion.Euler(0f, Random.Range(0f, 360f), 0f));
+        Instantiate(objectToSpawn, hit.position, Quaternion.Euler(0f, Random.Range(0, 360), 0f));
     }
 }
