@@ -4,12 +4,15 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using Debug = UnityEngine.Debug;
+using Unity.VisualScripting;
+using System.Collections.Generic;
+using Random = UnityEngine.Random;
 
-public class PlayerController : MonoBehaviour, IDamage, IPickup
+public class PlayerController : MonoBehaviour, IDamage, IPickup, IOpen, IPush
 {
     [SerializeField] CharacterController controller;
     [SerializeField] LayerMask ignoreLayer;
-    [SerializeField] Transform medHoldPos;
+    [SerializeField] List<medStats> medList = new List<medStats>();
 
     [SerializeField] int HP;
     [SerializeField] int speed;
@@ -17,18 +20,13 @@ public class PlayerController : MonoBehaviour, IDamage, IPickup
     [SerializeField] int jumpSpeed;
     [SerializeField] int jumpMax;
     [SerializeField] int gravity;
-
-    [SerializeField] int shootDamage;
-    [SerializeField] int shootDist;
-    [SerializeField] float shootRate;
+    [SerializeField] int pushVelTime;
+    [SerializeField] Transform medHoldPos;
 
     int jumpCount;
     int HPOrig;
 
-    float shootTimer;
-
     // --- Medkit inventory ---
-    List<medStats> medList = new List<medStats>();
     int medListPos;
 
     medStats heldMed;
@@ -36,6 +34,7 @@ public class PlayerController : MonoBehaviour, IDamage, IPickup
 
     Vector3 moveDir;
     Vector3 playerVel;
+    Vector3 PushVel;
 
     void Start()
     {
@@ -70,9 +69,7 @@ public class PlayerController : MonoBehaviour, IDamage, IPickup
 
     void movement()
     {
-        shootTimer += Time.deltaTime;
-
-        Debug.DrawRay(Camera.main.transform.position, Camera.main.transform.forward * shootDist, Color.red);
+        PushVel = Vector3.Lerp(PushVel, Vector3.zero, pushVelTime * Time.deltaTime);
 
         if (controller.isGrounded)
         {
@@ -84,12 +81,9 @@ public class PlayerController : MonoBehaviour, IDamage, IPickup
         controller.Move(moveDir * speed * Time.deltaTime);
 
         jump();
-        controller.Move(playerVel * speed * Time.deltaTime);
+        controller.Move((playerVel + PushVel) * Time.deltaTime);
 
         playerVel.y -= gravity * Time.deltaTime;
-
-        if (Input.GetButton("Fire1") && shootTimer >= shootRate)
-            shoot();
     }
 
     void jump()
@@ -113,25 +107,6 @@ public class PlayerController : MonoBehaviour, IDamage, IPickup
         }
     }
 
-    void shoot()
-    {
-        shootTimer = 0f;
-
-        Vector3 origin = Camera.main.transform.position;
-        Vector3 dir = Camera.main.transform.forward;
-
-        RaycastHit hit;
-
-        if (Physics.Raycast(origin, dir, out hit, shootDist))
-        {
-            IDamage dmg = hit.collider.GetComponent<IDamage>();
-
-            if (dmg != null)
-            {
-                dmg.takeDamage(shootDamage);
-            }
-        }
-    }
 
     public void takeDamage(int Amount)
     {
@@ -241,5 +216,10 @@ public class PlayerController : MonoBehaviour, IDamage, IPickup
 
         // Refresh held model (or clear if none left)
         changeMedkit();
+    }
+
+    public void getPushVel(Vector3 pushAmount)
+    {
+        PushVel += pushAmount;
     }
 }

@@ -13,4 +13,4 @@ MonoBehaviour:
   m_Name: Large MedKit
   m_EditorClassIdentifier: Assembly-CSharp::medStats
   healAmount: 75
-  heldModelPrefab: {fileID: 1509325872694340406, guid: a1976c4290360f040a0c1cd00392535d, type: 3}
+  heldModelPrefab: {fileID: 2037643080369579578, guid: c7122ca4e3cde674f91e86112d3ed1fa, type: 3}

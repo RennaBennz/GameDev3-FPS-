@@ -13,4 +13,4 @@ MonoBehaviour:
   m_Name: Medium MedKit
   m_EditorClassIdentifier: Assembly-CSharp::medStats
   healAmount: 50
-  heldModelPrefab: {fileID: 8105037710421776489, guid: 3818659e81154ed4f83d0ca8a72b1f93, type: 3}
+  heldModelPrefab: {fileID: 4805222582173416735, guid: 29c74054eef1b4d4398fd9514dcf6382, type: 3}

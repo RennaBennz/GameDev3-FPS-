@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 6220324590488819856}
   - component: {fileID: 1259707309945964333}
   - component: {fileID: 330406811443182884}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: FirstAidKit-Large
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -47,7 +47,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dcfb68f9e35a3ba4880a7e23db31ab3c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::NewMonoBehaviourScript
-  med: {fileID: 11400000, guid: be6932bbbe577b340b23c11f522c81c6, type: 2}
+  med: {fileID: 11400000, guid: bded2fc8b748798439e336dad2762bd7, type: 2}
 --- !u!33 &6220324590488819856
 MeshFilter:
   m_ObjectHideFlags: 0
