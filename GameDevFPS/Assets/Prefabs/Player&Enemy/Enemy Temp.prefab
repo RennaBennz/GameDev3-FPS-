@@ -231,7 +231,7 @@ MonoBehaviour:
   faceTargetSpeed: 20
   FOV: 360
   roamDist: 15
-  roamPuaseTime: 0
+  roamPuaseTime: 1
   model: {fileID: 3702671316791680389}
   agent: {fileID: 1919619951117783676}
   bullet: {fileID: 9151583332943362313, guid: af99a212b8a5c924ab27c30ca496614e, type: 3}
