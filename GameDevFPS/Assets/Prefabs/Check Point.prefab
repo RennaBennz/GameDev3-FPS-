@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 4954355295443578138}
   - component: {fileID: 2017268296953178079}
   m_Layer: 0
-  m_Name: Cube
+  m_Name: CheckPoint Plate
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -177,5 +177,5 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 2, y: 2, z: 2}
+  m_Size: {x: 4, y: 2, z: 4}
   m_Center: {x: 0, y: 0, z: 0}
