@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 6220324590488819856}
   - component: {fileID: 1259707309945964333}
   - component: {fileID: 330406811443182884}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: FirstAidKit-Large
   m_TagString: Untagged
   m_Icon: {fileID: 0}
