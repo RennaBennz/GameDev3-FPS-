@@ -2186,7 +2186,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 82206e1076bee5c47bbfae03a68d4547, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Spawner
-  objectToSpawn: {fileID: 8077940669512578957, guid: 88a6d114f673d5c4ab6e2b19a2034c33, type: 3}
+  objectToSpawn: {fileID: 1897190844628474362, guid: 88a6d114f673d5c4ab6e2b19a2034c33, type: 3}
   spawnAmount: 2
   spawnRate: 1
   spawnDist: 2
@@ -4548,7 +4548,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 82206e1076bee5c47bbfae03a68d4547, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Spawner
-  objectToSpawn: {fileID: 8077940669512578957, guid: 88a6d114f673d5c4ab6e2b19a2034c33, type: 3}
+  objectToSpawn: {fileID: 1897190844628474362, guid: 88a6d114f673d5c4ab6e2b19a2034c33, type: 3}
   spawnAmount: 2
   spawnRate: 1
   spawnDist: 2
@@ -6539,7 +6539,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 82206e1076bee5c47bbfae03a68d4547, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Spawner
-  objectToSpawn: {fileID: 8077940669512578957, guid: 88a6d114f673d5c4ab6e2b19a2034c33, type: 3}
+  objectToSpawn: {fileID: 1897190844628474362, guid: 88a6d114f673d5c4ab6e2b19a2034c33, type: 3}
   spawnAmount: 2
   spawnRate: 1
   spawnDist: 2
@@ -7875,15 +7875,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5426848314773018895, guid: 97bd217c81dc2404f9ed1ce07ed5838c, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -0
+      value: 2.79
       objectReference: {fileID: 0}
     - target: {fileID: 5426848314773018895, guid: 97bd217c81dc2404f9ed1ce07ed5838c, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 2.013
+      value: 1.48
       objectReference: {fileID: 0}
     - target: {fileID: 5426848314773018895, guid: 97bd217c81dc2404f9ed1ce07ed5838c, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 108.51
+      value: 107.36
       objectReference: {fileID: 0}
     - target: {fileID: 5426848314773018895, guid: 97bd217c81dc2404f9ed1ce07ed5838c, type: 3}
       propertyPath: m_LocalRotation.w
@@ -11383,7 +11383,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 82206e1076bee5c47bbfae03a68d4547, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Spawner
-  objectToSpawn: {fileID: 8077940669512578957, guid: 88a6d114f673d5c4ab6e2b19a2034c33, type: 3}
+  objectToSpawn: {fileID: 1897190844628474362, guid: 88a6d114f673d5c4ab6e2b19a2034c33, type: 3}
   spawnAmount: 10
   spawnRate: 1
   spawnDist: 2
@@ -12540,7 +12540,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 82206e1076bee5c47bbfae03a68d4547, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Spawner
-  objectToSpawn: {fileID: 8077940669512578957, guid: 88a6d114f673d5c4ab6e2b19a2034c33, type: 3}
+  objectToSpawn: {fileID: 1897190844628474362, guid: 88a6d114f673d5c4ab6e2b19a2034c33, type: 3}
   spawnAmount: 2
   spawnRate: 1
   spawnDist: 2
@@ -13011,7 +13011,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 82206e1076bee5c47bbfae03a68d4547, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Spawner
-  objectToSpawn: {fileID: 8077940669512578957, guid: 88a6d114f673d5c4ab6e2b19a2034c33, type: 3}
+  objectToSpawn: {fileID: 1897190844628474362, guid: 88a6d114f673d5c4ab6e2b19a2034c33, type: 3}
   spawnAmount: 2
   spawnRate: 1
   spawnDist: 2
@@ -17625,6 +17625,14 @@ PrefabInstance:
     - target: {fileID: 1932139033510176330, guid: b3007497dfcf1854486b7b1e52b61479, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7295197750582902443, guid: b3007497dfcf1854486b7b1e52b61479, type: 3}
+      propertyPath: jumpMax
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 7295197750582902443, guid: b3007497dfcf1854486b7b1e52b61479, type: 3}
+      propertyPath: jumpSpeed
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 7295197750582902443, guid: b3007497dfcf1854486b7b1e52b61479, type: 3}
       propertyPath: pushVelTime
