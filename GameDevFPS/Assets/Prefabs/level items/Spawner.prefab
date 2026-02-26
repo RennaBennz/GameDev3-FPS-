@@ -45,7 +45,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 82206e1076bee5c47bbfae03a68d4547, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Spawner
-  objectToSpawn: {fileID: 8077940669512578957, guid: 88a6d114f673d5c4ab6e2b19a2034c33, type: 3}
+  objectToSpawn: {fileID: 1897190844628474362, guid: 88a6d114f673d5c4ab6e2b19a2034c33, type: 3}
   spawnAmount: 2
   spawnRate: 1
   spawnDist: 2

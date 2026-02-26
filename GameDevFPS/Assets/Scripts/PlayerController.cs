@@ -4,8 +4,11 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using Debug = UnityEngine.Debug;
+using Unity.VisualScripting;
+using System.Collections.Generic;
+using Random = UnityEngine.Random;
 
-public class PlayerController : MonoBehaviour, IDamage, IPickup
+public class PlayerController : MonoBehaviour, IDamage, IPickup, IOpen, IPush
 {
     [SerializeField] CharacterController controller;
     [SerializeField] LayerMask ignoreLayer;
@@ -17,13 +20,11 @@ public class PlayerController : MonoBehaviour, IDamage, IPickup
     [SerializeField] int jumpSpeed;
     [SerializeField] int jumpMax;
     [SerializeField] int gravity;
-
+    [SerializeField] int pushVelTime;
     [SerializeField] Transform medHoldPos;
 
     int jumpCount;
     int HPOrig;
-
-    float shootTimer;
 
     // --- Medkit inventory ---
     int medListPos;
@@ -33,6 +34,7 @@ public class PlayerController : MonoBehaviour, IDamage, IPickup
 
     Vector3 moveDir;
     Vector3 playerVel;
+    Vector3 PushVel;
 
     void Start()
     {
@@ -67,6 +69,8 @@ public class PlayerController : MonoBehaviour, IDamage, IPickup
 
     void movement()
     {
+        PushVel = Vector3.Lerp(PushVel, Vector3.zero, pushVelTime * Time.deltaTime);
+
         if (controller.isGrounded)
         {
             jumpCount = 0;
@@ -77,7 +81,7 @@ public class PlayerController : MonoBehaviour, IDamage, IPickup
         controller.Move(moveDir * speed * Time.deltaTime);
 
         jump();
-        controller.Move(playerVel * speed * Time.deltaTime);
+        controller.Move((playerVel + PushVel) * Time.deltaTime);
 
         playerVel.y -= gravity * Time.deltaTime;
     }
@@ -212,5 +216,10 @@ public class PlayerController : MonoBehaviour, IDamage, IPickup
 
         // Refresh held model (or clear if none left)
         changeMedkit();
+    }
+
+    public void getPushVel(Vector3 pushAmount)
+    {
+        PushVel += pushAmount;
     }
 }
