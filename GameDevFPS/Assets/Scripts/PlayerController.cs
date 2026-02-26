@@ -38,6 +38,7 @@ public class PlayerController : MonoBehaviour, IDamage, IPickup
     {
         HPOrig = HP;
         updatePlayerUI();
+        spawnPlayer();
     }
 
     void Update()

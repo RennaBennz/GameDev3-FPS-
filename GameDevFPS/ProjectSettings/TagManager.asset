@@ -4,7 +4,6 @@
 TagManager:
   serializedVersion: 3
   tags:
-  - player
   - Play Spawn Pos
   layers:
   - Default
