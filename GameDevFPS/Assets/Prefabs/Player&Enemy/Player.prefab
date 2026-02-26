@@ -9,8 +9,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 808201810758100413}
-  m_Layer: 9
-  m_Name: MedKit Model
+  m_Layer: 0
+  m_Name: medHoldPos
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -197,7 +197,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8690077036089898022}
-  - component: {fileID: 6344651236835013939}
   - component: {fileID: 664281137917628137}
   - component: {fileID: 6158259721388613030}
   m_Layer: 9
@@ -215,26 +214,13 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3280995492252960829}
   serializedVersion: 2
-  m_LocalRotation: {x: -0.38268343, y: -0, z: -0, w: 0.92387956}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 0.3, y: 0.29999995, z: 0.3}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 808201810758100413}
-  m_LocalEulerAnglesHint: {x: -45, y: 0, z: 0}
---- !u!114 &6344651236835013939
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3280995492252960829}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: dcfb68f9e35a3ba4880a7e23db31ab3c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::NewMonoBehaviourScript
-  med: {fileID: 11400000, guid: be6932bbbe577b340b23c11f522c81c6, type: 2}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!20 &664281137917628137
 Camera:
   m_ObjectHideFlags: 0
@@ -358,7 +344,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8234186510983492579}
   serializedVersion: 2
-  m_LocalRotation: {x: -0, y: 1, z: -0, w: 0.0000000745058}
+  m_LocalRotation: {x: 0, y: 1, z: 0, w: 0}
   m_LocalPosition: {x: 0, y: 1.97, z: 108.5}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -382,16 +368,14 @@ MonoBehaviour:
   ignoreLayer:
     serializedVersion: 2
     m_Bits: 0
-  medHoldPos: {fileID: 808201810758100413}
+  medList: []
   HP: 100
   speed: 20
   sprintMod: 2
   jumpSpeed: 2
   jumpMax: 1
   gravity: 15
-  shootDamage: 10
-  shootDist: 15
-  shootRate: 10
+  medHoldPos: {fileID: 808201810758100413}
 --- !u!143 &3996141360940619455
 CharacterController:
   m_ObjectHideFlags: 0
